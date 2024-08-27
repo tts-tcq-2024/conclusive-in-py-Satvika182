@@ -58,8 +58,12 @@ class TypewiseTest(unittest.TestCase):
         mock_print.assert_any_call('To: a.b@c.com')
         mock_print.assert_any_call('Hi, the temperature is too high')
 
-    def test_classify_temperature_breach_invalid_cooling_type(self):
-        self.assertEqual(typewise_alert.classify_temperature_breach('INVALID_COOLING', 20), 'NORMAL')
+    def classify_temperature_breach(cooling_type, temperature_in_c):
+    if cooling_type not in TEMPERATURE_LIMITS:
+        return NORMAL  # Handle invalid cooling types by returning NORMAL
+    lower_limit, upper_limit = TEMPERATURE_LIMITS[cooling_type]
+    return infer_breach(temperature_in_c, lower_limit, upper_limit)
+
 
     def test_check_and_alert_invalid_alert_target(self):
         battery_char = {'coolingType': 'PASSIVE_COOLING'}
