@@ -59,7 +59,7 @@ class TypewiseTest(unittest.TestCase):
         mock_print.assert_any_call('Hi, the temperature is too high')
 
     def classify_temperature_breach(cooling_type, temperature_in_c):
-    if cooling_type not in TEMPERATURE_LIMITS:
+     if cooling_type not in TEMPERATURE_LIMITS:
         return NORMAL  # Return NORMAL if the cooling type is invalid
     lower_limit, upper_limit = TEMPERATURE_LIMITS[cooling_type]
     return infer_breach(temperature_in_c, lower_limit, upper_limit)
