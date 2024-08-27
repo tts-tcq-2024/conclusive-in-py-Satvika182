@@ -60,7 +60,7 @@ class TypewiseTest(unittest.TestCase):
 
     def classify_temperature_breach(cooling_type, temperature_in_c):
     if cooling_type not in TEMPERATURE_LIMITS:
-        return NORMAL  # Handle invalid cooling types by returning NORMAL
+        return NORMAL  # Return NORMAL if the cooling type is invalid
     lower_limit, upper_limit = TEMPERATURE_LIMITS[cooling_type]
     return infer_breach(temperature_in_c, lower_limit, upper_limit)
 
